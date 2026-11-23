@@ -161,7 +161,7 @@
   @media(max-width:850px){#lb .in{grid-template-columns:1fr}#lb img{max-height:68vh}}
   /* video interactivo */
   .video video{opacity:.9}
-  .play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:radial-gradient(ellipse at center,rgba(0,0,0,.25),rgba(0,0,0,.6));border:0;cursor:pointer;color:var(--ink);font-family:var(--sc);letter-spacing:.22em;font-size:16px;transition:background .3s}
+  .play{text-decoration:none;position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:radial-gradient(ellipse at center,rgba(0,0,0,.25),rgba(0,0,0,.6));border:0;cursor:pointer;color:var(--ink);font-family:var(--sc);letter-spacing:.22em;font-size:16px;transition:background .3s}
   .play:hover{background:radial-gradient(ellipse at center,rgba(0,0,0,.1),rgba(0,0,0,.5))}
   .play .ic{width:92px;height:92px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;transition:transform .3s, background .3s}
   .play:hover .ic{transform:scale(1.08);background:rgba(194,164,106,.18)}
@@ -396,20 +396,16 @@
       <video id="clip" autoplay muted loop playsinline preload="auto" poster="media/sex-pistols-poster.jpg">
         <source src="media/sex-pistols-god-save-the-queen.mp4" type="video/mp4">
       </video>
-      <button class="play" id="playbtn" aria-label="Reproducir el video oficial con sonido">
+      <a class="play" id="playbtn" href="https://www.youtube.com/watch?v=yqrAPOZxgzU" target="_blank" rel="noopener" aria-label="Ver el video oficial con sonido en YouTube">
         <span class="ic"></span>
-        <span>Reproducir con sonido</span>
-        <small>Sex Pistols · God Save the Queen (1977)</small>
-      </button>
-    </div>
-    <div class="vbar">
-      <button id="back" hidden>← Volver al fragmento</button>
-      <a href="https://www.youtube.com/watch?v=yqrAPOZxgzU" target="_blank" rel="noopener">Abrir en YouTube ↗</a>
+        <span>Ver con sonido</span>
+        <small>Video oficial en YouTube · se abre en una pestaña nueva</small>
+      </a>
     </div>
     <div class="label">
       <div class="who">Sex Pistols</div>
       <div class="t"><i>God Save the Queen</i>, 1977</div>
-      <div class="d">Video musical oficial.</div>
+      <div class="d">Fragmento del video musical oficial (en bucle, sin sonido). Haga clic para verlo completo con sonido.</div>
       <div class="src">Fuente: canal oficial de los Sex Pistols en YouTube.</div>
     </div>
   </div>
@@ -538,16 +534,6 @@
   lb.addEventListener('click',closeLb);
   addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
 
-  // video: el fragmento corre en silencio; el botón carga el video oficial con sonido
-  const player=document.getElementById('player'), btn=document.getElementById('playbtn'), back=document.getElementById('back');
-  const clipHTML=player.innerHTML;
-  function bindPlay(){document.getElementById('playbtn').addEventListener('click',playOfficial)}
-  function playOfficial(){
-    player.innerHTML='<iframe src="https://www.youtube.com/embed/yqrAPOZxgzU?autoplay=1&rel=0&modestbranding=1" title="Sex Pistols - God Save the Queen (video oficial)" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
-    back.hidden=false;
-  }
-  back.addEventListener('click',()=>{player.innerHTML=clipHTML; back.hidden=true; bindPlay()});
-  bindPlay();
 </script>
 </body>
 </html>
